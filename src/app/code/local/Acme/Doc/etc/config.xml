@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Acme_Doc>
+            <version>0.1.0</version>
+        </Acme_Doc>
+    </modules>
+    <global>
+        <models>
+            <acme_doc>
+                <class>Acme_Doc_Model</class>
+                <resourceModel>acme_doc_resource</resourceModel>
+            </acme_doc>
+            <acme_doc_resource>
+                <class>Acme_Doc_Model_Resource</class>
+            </acme_doc_resource>
+        </models>
+        <blocks>
+            <acme_doc>
+                <class>Acme_Doc_Block</class>
+            </acme_doc>
+        </blocks>
+        <helpers>
+            <acme_doc>
+                <class>Acme_Doc_Helper</class>
+            </acme_doc>
+        </helpers>
+    </global>
+</config>
