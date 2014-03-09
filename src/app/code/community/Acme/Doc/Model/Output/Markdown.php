@@ -23,7 +23,9 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
 
     public function addHeading($text)
     {
+        $this->addLine();
         $this->addLine(str_repeat('#', $this->getDepth()) . ' ' . trim($text));
+        $this->addLine();
 
         return $this;
     }
