@@ -14,6 +14,18 @@ class Acme_Doc_Model_Parser_ModelAlias implements Acme_Doc_Model_Parser_Interfac
      */
     public function parse($data, Acme_Doc_Model_Output_Interface $output)
     {
+        $className = Mage::getConfig()->getModelClassName($data);
+
+        if (!$className)
+        {
+            return;
+        }
+
+        if (!class_exists($className, false))
+        {
+            return;
+        }
+
         $this->mainSection($data, $output);
 
         $this->descriptionSection($data, $output);
@@ -57,7 +69,7 @@ class Acme_Doc_Model_Parser_ModelAlias implements Acme_Doc_Model_Parser_Interfac
     {
         $className = Mage::getConfig()->getModelClassName($data);
 
-        if (!$className)
+        if (!$className || !class_exists($className, false))
         {
             return;
         }
@@ -65,10 +77,5 @@ class Acme_Doc_Model_Parser_ModelAlias implements Acme_Doc_Model_Parser_Interfac
         $output->addLine(
             $this->getHelper()->__('The alias **%s** will create a new **%s** object.', $data, $className)
         );
-
-        if (!class_exists($className, false))
-        {
-            return;
-        }
     }
 }
