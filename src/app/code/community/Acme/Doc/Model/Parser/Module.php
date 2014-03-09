@@ -15,6 +15,8 @@ class Acme_Doc_Model_Parser_Module
             )
         );
 
+
+
         $output->addLine();
         $output->addLine();
     }
