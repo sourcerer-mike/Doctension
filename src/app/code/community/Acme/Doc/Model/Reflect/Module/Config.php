@@ -76,43 +76,50 @@ class Acme_Doc_Model_Reflect_Module_Config extends Varien_Object
         return '//' . rtrim($xmlPath, '/');
     }
 
-    public function getScopeToClass()
+    public function getModelFiles()
     {
-        $modelSet = array();
-        $modelXml = $this->getConfigXml()->getXpath('//models');
+        return $this->getFiles('models');
+    }
 
-        $modelBaseDir = $this->getModule()->getModelDirectory();
-        foreach ($modelXml as $node)
+    public function getFiles($area)
+    {
         {
-            /** @var Varien_Simplexml_Element $node */
-            $scope = $node->getParent()->getName();
+            $modelSet = array();
+            $modelXml = $this->getConfigXml()->getXpath('//' . $area);
 
-            foreach ($node as $alias => $baseClassName)
+            $modelBaseDir = $this->getModule()->getModelDirectory();
+            foreach ($modelXml as $node)
             {
-                $baseDir = str_replace($this->getModule()->getName() . '_', '', (string) $baseClassName->class);
-                $baseDir = $this->getModule()->getDirectory() . str_replace('_', '/', $baseDir) . '/';
+                /** @var Varien_Simplexml_Element $node */
+                $scope = $node->getParent()->getName();
 
-                $modelSet[$scope][$alias] = array();
-                $regExp = '@' . Mage::getBaseDir() . '/' . preg_quote($baseDir, '@') . '.*\.php@i';
-                foreach ($this->getModule()->getFileList($regExp) as $file)
+                foreach ($node as $alias => $baseClassName)
                 {
-                    /** @var SplFileInfo $file */
-                    if ($file instanceof SplFileInfo)
+                    $baseDir = str_replace($this->getModule()->getName() . '_', '', (string) $baseClassName->class);
+                    $baseDir = $this->getModule()->getDirectory() . str_replace('_', '/', $baseDir) . '/';
+
+                    $modelSet[$scope][$alias] = array();
+                    $regExp = '@' . Mage::getBaseDir() . '/' . preg_quote($baseDir, '@') . '.*\.php@i';
+                    foreach ($this->getModule()->getFileList($regExp) as $file)
                     {
-                        $value = $file->getPathname();
-                    }
-                    elseif (is_array($file))
-                    {
-                        $value = current($file);
-                    }
+                        /** @var SplFileInfo $file */
+                        if ($file instanceof SplFileInfo)
+                        {
+                            $value = $file->getPathname();
+                        }
+                        elseif (is_array($file))
+                        {
+                            $value = current($file);
+                        }
 
 
-                    $modelSet[$scope][$alias][] = str_replace(Mage::getBaseDir() . '/', '', $value);
+                        $modelSet[$scope][$alias][] = str_replace(Mage::getBaseDir() . '/', '', $value);
+                    }
                 }
             }
-        }
 
-        return $modelSet;
+            return $modelSet;
+        }
     }
 
 

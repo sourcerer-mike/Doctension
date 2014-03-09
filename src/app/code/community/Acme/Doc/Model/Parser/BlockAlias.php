@@ -1,6 +1,6 @@
 <?php
 
-class Acme_Doc_Model_Parser_ModelAlias extends Acme_Doc_Model_Parser_SimpleClass
+class Acme_Doc_Model_Parser_BlockAlias extends Acme_Doc_Model_Parser_SimpleClass
 {
 
     /**
