@@ -12,10 +12,16 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
     {
         $output->addHeading($data->getName());
 
+        $version = $data->getVersion();
+        if (!$version)
+        {
+            $version = sprintf('<i>%s</i>', Mage::helper('acme_doc')->__('unknown'));
+        }
+
         $output->addItemization(
             array(
                 'Active: ' . $data->getActive(),
-                'Version: ' . $data->getVersion(),
+                'Version: ' . $version,
                 'Code Pool: ' . $data->getCodePool(),
                 'Directory: ' . $data->getDirectory(),
             )
