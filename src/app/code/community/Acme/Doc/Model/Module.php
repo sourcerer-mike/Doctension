@@ -20,8 +20,16 @@ class Acme_Doc_Model_Module extends Varien_Object
 
     protected $_config;
 
+    /**
+     * @return Acme_Doc_Model_Module_Config
+     */
     public function getConfig()
     {
-        $this->_config = Mage::getModel(Acme_Doc_Model_Module_Config::ALIAS);
+        if (!$this->_config)
+        {
+            $this->_config = Mage::getModel(Acme_Doc_Model_Module_Config::ALIAS, $this);
+        }
+
+        return $this->_config;
     }
 }
