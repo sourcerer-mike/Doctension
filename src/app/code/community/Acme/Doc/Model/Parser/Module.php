@@ -5,7 +5,7 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
     const ALIAS = 'acme_doc/parser_module';
 
     /**
-     * @param Acme_Doc_Model_Module           $data
+     * @param Acme_Doc_Model_Reflect_Module           $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
     public function parse($data, Acme_Doc_Model_Output_Interface $output)

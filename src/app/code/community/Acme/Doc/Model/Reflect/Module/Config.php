@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Class Acme_Doc_Model_Module_Config
+ * Class Acme_Doc_Model_Reflect_Module_Config
  *
- * @method Acme_Doc_Model_Module getModule()
+ * @method Acme_Doc_Model_Reflect_Module getModule()
  * @method setModule($module)
  */
-class Acme_Doc_Model_Module_Config extends Varien_Object
+class Acme_Doc_Model_Reflect_Module_Config extends Varien_Object
 {
-    const ALIAS = 'acme_doc/module_config';
+    const ALIAS = 'acme_doc/reflect_module_config';
 
     /** @var Varien_Simplexml_Config */
     protected $_configXml;
@@ -19,7 +19,7 @@ class Acme_Doc_Model_Module_Config extends Varien_Object
         parent::__construct();
 
 
-        if ($module instanceof Acme_Doc_Model_Module)
+        if ($module instanceof Acme_Doc_Model_Reflect_Module)
         {
             $this->setModule($module);
         }

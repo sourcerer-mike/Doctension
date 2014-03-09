@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Acme_Doc_Model_Module
+ * Class Acme_Doc_Model_Reflect_Module
  *
  * @method getActive
  * @method getBlockDirectory
@@ -16,20 +16,20 @@
  * @method getSqlDirectory
  * @method getVersion
  */
-class Acme_Doc_Model_Module extends Varien_Object
+class Acme_Doc_Model_Reflect_Module extends Varien_Object
 {
-    const ALIAS = 'acme_doc/module';
+    const ALIAS = 'acme_doc/reflect_module';
 
     protected $_config;
 
     /**
-     * @return Acme_Doc_Model_Module_Config
+     * @return Acme_Doc_Model_Reflect_Module_Config
      */
     public function getConfig()
     {
         if (!$this->_config)
         {
-            $this->_config = Mage::getModel(Acme_Doc_Model_Module_Config::ALIAS, $this);
+            $this->_config = Mage::getModel(Acme_Doc_Model_Reflect_Module_Config::ALIAS, $this);
         }
 
         return $this->_config;

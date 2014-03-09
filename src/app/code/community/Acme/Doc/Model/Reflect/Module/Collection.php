@@ -1,6 +1,6 @@
 <?php
 
-class Acme_Doc_Model_Module_Collection extends Varien_Data_Collection
+class Acme_Doc_Model_Reflect_Module_Collection extends Varien_Data_Collection
 {
     const MODULE_CODE_POOL = 'codePool';
 
@@ -64,7 +64,7 @@ class Acme_Doc_Model_Module_Collection extends Varien_Data_Collection
                               'version'         => (string) $data->version,
                           ) + $moduleData;
 
-            $moduleModel = Mage::getModel(Acme_Doc_Model_Module::ALIAS);
+            $moduleModel = Mage::getModel(Acme_Doc_Model_Reflect_Module::ALIAS);
             $moduleModel->setData($moduleData);
             $this->addItem($moduleModel);
         }

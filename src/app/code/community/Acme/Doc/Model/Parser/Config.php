@@ -9,7 +9,7 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
-     * @param Acme_Doc_Model_Module_Config    $data
+     * @param Acme_Doc_Model_Reflect_Module_Config    $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
     public function parse($data, Acme_Doc_Model_Output_Interface $output)
@@ -22,7 +22,7 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
-     * @param                         Acme_Doc_Model_Module_Config $data
+     * @param                         Acme_Doc_Model_Reflect_Module_Config $data
      * @param Acme_Doc_Model_Output_Interface                      $output
      */
     public function rewritesSection($data, Acme_Doc_Model_Output_Interface $output)
@@ -44,7 +44,7 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
-     * @param Acme_Doc_Model_Module_Config    $data
+     * @param Acme_Doc_Model_Reflect_Module_Config    $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
     protected function modelsSection($data, $output)

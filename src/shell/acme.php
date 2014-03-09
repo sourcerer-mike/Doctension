@@ -11,7 +11,7 @@ class Foo extends Mage_Shell_Abstract
      */
     public function run()
     {
-        $collection = Mage::getModel('acme_doc/module_collection')->load();
+        $collection = Mage::getModel('acme_doc/reflect_module_collection')->load();
 
         $parser = Mage::getModel('acme_doc/parser_module');
 
