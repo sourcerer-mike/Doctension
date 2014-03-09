@@ -53,15 +53,27 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
             $this->getHelper()->__('Models')
         );
 
-        $sub = $output->getSub();
+        $scopeOut = $output->getSub();
         foreach ($data->getScopeToClass() as $scope => $aliasClasses)
         {
             $scope = ucfirst($scope);
 
             foreach ($aliasClasses as $alias => $filePath)
             {
-                $sub->addHeading($this->getHelper()->__('%s models with alias "%s"', $scope, $alias));
-                $sub->addItemization($filePath);
+                $scopeOut->addHeading($this->getHelper()->__('%s models with alias "%s"', $scope, $alias));
+
+                $classOut    = $scopeOut->getSub();
+                $classParser = Mage::getModel('acme_doc/parser_modelAlias');
+                foreach ($filePath as $classPath)
+                {
+                    $className = str_replace($data->getModule()->getModelDirectory(), '', $classPath);
+                    $className = str_replace('.php', '', $className);
+                    $namesSet  = explode('/', $className);
+                    $namesSet = array_map('lcfirst',$namesSet);
+                    $modelAlias = $alias . '/' . implode('_', $namesSet);
+                    $classParser->parse($modelAlias, $classOut);
+                    $classOut->addLine();
+                }
             }
         }
     }
