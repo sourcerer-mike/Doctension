@@ -3,16 +3,18 @@
 /**
  * Class Acme_Doc_Model_Module
  *
- * @method getCodePool
- * @method getName
- * @method getDirectory
- * @method getModelDirectory
- * @method getBlockDirectory
- * @method getHelperDirectory
- * @method getControllersDirectory
- * @method getEtcDirectory
- * @method getVersion
  * @method getActive
+ * @method getBlockDirectory
+ * @method getCodePool
+ * @method getControllersDirectory
+ * @method getDirectory
+ * @method getEtcDirectory
+ * @method getHelperDirectory
+ * @method getLocaleDirectory
+ * @method getModelDirectory
+ * @method getName
+ * @method getSqlDirectory
+ * @method getVersion
  */
 class Acme_Doc_Model_Module extends Varien_Object
 {

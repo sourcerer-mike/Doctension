@@ -16,39 +16,53 @@ class Acme_Doc_Model_Module_Collection extends Varien_Data_Collection
     {
         $moduleConfig = (array) Mage::getConfig()->getNode('modules')->children();
 
-        $dir = array(
+        $fixedDirectories = array(
             'Model',
             'Block',
             'Helper',
-            'controllers',
+        );
+
+        $dynamicDirectories = array(
             'etc',
+            'controllers',
+            'sql',
+            'locale',
         );
 
         foreach ($moduleConfig as $moduleName => $data)
         {
             $moduleData = array();
 
-            foreach ($dir as $path)
-            {
-                $moduleData[strtolower($path) . '_directory'] = str_replace(
-                    Mage::getBaseDir('base') . '/',
-                    '',
-                    Mage::getModuleDir($path, $moduleName)
-                );
-            }
-
             $moduleData['directory'] = str_replace(
                 Mage::getBaseDir('base') . '/',
                 '',
-                dirname(Mage::getModuleDir('etc', $moduleName))
+                Mage::getModuleDir('', $moduleName) . '/'
             );
 
+            foreach ($fixedDirectories as $dir)
+            {
+                $moduleData[strtolower($dir) . '_directory'] = str_replace(
+                    Mage::getBaseDir('base') . '/',
+                    '',
+                    $moduleData['directory'] . $dir . '/'
+                );
+            }
+
+            foreach ($dynamicDirectories as $dir)
+            {
+                $moduleData[strtolower($dir) . '_directory'] = str_replace(
+                    Mage::getBaseDir('base') . '/',
+                    '',
+                    Mage::getModuleDir($dir, $moduleName) . '/'
+                );
+            }
+
             $moduleData = array(
-                'active'                => (string) $data->active,
-                'code_pool'             => (string) $data->codePool,
-                self::MODULE_NAME       => $moduleName,
-                'version'               => (string) $data->version,
-            ) + $moduleData;
+                              'active'          => (string) $data->active,
+                              'code_pool'       => (string) $data->codePool,
+                              self::MODULE_NAME => $moduleName,
+                              'version'         => (string) $data->version,
+                          ) + $moduleData;
 
             $moduleModel = Mage::getModel(Acme_Doc_Model_Module::ALIAS);
             $moduleModel->setData($moduleData);
