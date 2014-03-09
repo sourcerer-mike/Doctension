@@ -20,6 +20,7 @@ class Foo extends Mage_Shell_Abstract
         $output->addHeading('Modules');
         $sub = $output->getSub();
 
+        $parsed = array();
         foreach ($collection as $module)
         {
             /** @var $module Acme_Doc_Model_Module */
@@ -33,7 +34,13 @@ class Foo extends Mage_Shell_Abstract
                 continue;
             }
 
+            if (in_array($module->getName(), $parsed))
+            { // already parsed: hinder from parsing twice
+                continue;
+            }
+
             $parser->parse($module, $sub);
+            $parsed[] = $module->getName();
         }
     }
 }
