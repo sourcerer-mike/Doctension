@@ -21,7 +21,7 @@ class Acme_Doc_Model_Parser_ModelAlias extends Acme_Doc_Model_Parser_SimpleClass
             return;
         }
 
-        $this->mainSection($className, $output);
+        $this->mainSection($data, $output);
         parent::descriptionSection($className, $output);
         parent::methodsSection($className, $output);
     }
