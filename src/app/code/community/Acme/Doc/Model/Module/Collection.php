@@ -16,9 +16,6 @@ class Acme_Doc_Model_Module_Collection extends Varien_Data_Collection
     {
         $moduleConfig = (array) Mage::getConfig()->getNode('modules')->children();
 
-        /** @var LeMike_DevMode_Helper_Core $helper */
-        $helper = Mage::helper('lemike_devmode/core');
-
         $dir = array(
             'Model',
             'Block',
@@ -53,7 +50,7 @@ class Acme_Doc_Model_Module_Collection extends Varien_Data_Collection
                 'version'               => (string) $data->version,
             ) + $moduleData;
 
-            $moduleModel = Mage::getModel(Acme_Doc_Model_Module::XPATH);
+            $moduleModel = Mage::getModel(Acme_Doc_Model_Module::ALIAS);
             $moduleModel->setData($moduleData);
             $this->addItem($moduleModel);
         }

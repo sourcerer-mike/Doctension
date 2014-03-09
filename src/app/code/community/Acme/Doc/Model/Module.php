@@ -16,5 +16,12 @@
  */
 class Acme_Doc_Model_Module extends Varien_Object
 {
-    const XPATH = 'acme_doc/module';
+    const ALIAS = 'acme_doc/module';
+
+    protected $_config;
+
+    public function getConfig()
+    {
+        $this->_config = Mage::getModel(Acme_Doc_Model_Module_Config::ALIAS);
+    }
 }
