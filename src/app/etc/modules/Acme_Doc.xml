@@ -3,7 +3,7 @@
     <modules>
         <Acme_Doc>
             <active>true</active>
-            <codePool>local</codePool>
-                    </Acme_Doc>
+            <codePool>community</codePool>
+        </Acme_Doc>
     </modules>
 </config>
