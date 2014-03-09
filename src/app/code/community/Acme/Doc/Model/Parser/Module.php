@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Parses a whole module and sends information to the output.
+ */
 class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
 {
     const ALIAS = 'acme_doc/parser_module';

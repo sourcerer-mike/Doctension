@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Looks up the module config and generates output for it.
+ */
 class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
 {
 

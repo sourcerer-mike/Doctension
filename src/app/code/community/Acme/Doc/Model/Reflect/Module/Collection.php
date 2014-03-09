@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Container for a set of information about all installed magento modules.
+ */
 class Acme_Doc_Model_Reflect_Module_Collection extends Varien_Data_Collection
 {
     const MODULE_CODE_POOL = 'codePool';

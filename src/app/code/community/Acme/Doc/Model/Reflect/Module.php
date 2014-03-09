@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Acme_Doc_Model_Reflect_Module
+ * Access information about a magento module.
  *
  * @method getActive
  * @method getBlockDirectory

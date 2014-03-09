@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Turns all information in markdown.
+ */
 class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
 {
     protected $_depth = 1;

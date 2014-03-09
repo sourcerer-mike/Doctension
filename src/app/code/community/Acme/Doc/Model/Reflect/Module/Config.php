@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Acme_Doc_Model_Reflect_Module_Config
+ * Deliver information about the configuration of a module.
  *
  * @method Acme_Doc_Model_Reflect_Module getModule()
  * @method setModule($module)
