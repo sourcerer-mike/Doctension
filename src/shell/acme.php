@@ -28,6 +28,11 @@ class Foo extends Mage_Shell_Abstract
                 continue;
             }
 
+            if ($module->getName() != 'Acme_Doc')
+            {
+                continue;
+            }
+
             $parser->parse($module, $sub);
         }
     }
