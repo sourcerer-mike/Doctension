@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Gathers information about a class and sends them to the output.
+ */
 class Acme_Doc_Model_Parser_SimpleClass implements Acme_Doc_Model_Parser_Interface
 {
     /**
@@ -32,11 +35,22 @@ class Acme_Doc_Model_Parser_SimpleClass implements Acme_Doc_Model_Parser_Interfa
         }
     }
 
+    /**
+     * Gets the helper of this module.
+     *
+     * @return mixed
+     */
     public function getHelper()
     {
         return Mage::helper('acme_doc');
     }
 
+    /**
+     * Sends information about the methods to output.
+     *
+     * @param                                 $className
+     * @param Acme_Doc_Model_Output_Interface $output
+     */
     public function methodsSection($className, Acme_Doc_Model_Output_Interface $output)
     {
         if (!class_exists($className, false))
@@ -89,6 +103,8 @@ class Acme_Doc_Model_Parser_SimpleClass implements Acme_Doc_Model_Parser_Interfa
     }
 
     /**
+     * Sends all possible information to the output.
+     *
      * @param string                          $className
      * @param Acme_Doc_Model_Output_Interface $output
      */

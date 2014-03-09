@@ -5,6 +5,8 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
     const ALIAS = 'acme_doc/parser_module';
 
     /**
+     * Send all information to the output.
+     *
      * @param Acme_Doc_Model_Reflect_Module           $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
@@ -21,6 +23,8 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
+     * Send the configuration to the output.
+     *
      * @param                                 $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
@@ -31,6 +35,8 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
+     * Main information about the module will be send to output.
+     *
      * @param                                 $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
@@ -53,6 +59,11 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
         );
     }
 
+    /**
+     * Get the module helper.
+     *
+     * @return mixed
+     */
     public function getHelper()
     {
         return Mage::helper('acme_doc');

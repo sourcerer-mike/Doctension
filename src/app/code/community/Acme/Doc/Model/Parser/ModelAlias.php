@@ -27,6 +27,8 @@ class Acme_Doc_Model_Parser_ModelAlias extends Acme_Doc_Model_Parser_SimpleClass
     }
 
     /**
+     * Main information about the models.
+     *
      * @param                                 $data
      * @param Acme_Doc_Model_Output_Interface $output
      */

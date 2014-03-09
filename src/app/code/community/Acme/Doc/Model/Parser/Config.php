@@ -3,12 +3,19 @@
 class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
 {
 
+    /**
+     * Get the module helper.
+     *
+     * @return mixed
+     */
     public function getHelper()
     {
         return Mage::helper('acme_doc');
     }
 
     /**
+     * Put all possible information to the output.
+     *
      * @param Acme_Doc_Model_Reflect_Module_Config $data
      * @param Acme_Doc_Model_Output_Interface      $output
      */
@@ -23,6 +30,8 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
+     * Analyse for rewrites and write information to output.
+     *
      * @param                         Acme_Doc_Model_Reflect_Module_Config $data
      * @param Acme_Doc_Model_Output_Interface                              $output
      */
@@ -47,6 +56,9 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     /**
      * @param $data
      * @param $scopeOut
+     * @param $baseDirectory
+     * @param $area
+     * @param $classParser
      */
     protected function _aliasParse($data, $scopeOut, $baseDirectory, $area, $classParser)
     {
@@ -75,6 +87,8 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
+     * Send information about the modules blocks to output.
+     *
      * @param Acme_Doc_Model_Reflect_Module_Config $data
      * @param Acme_Doc_Model_Output_Interface      $output
      */
@@ -95,6 +109,8 @@ class Acme_Doc_Model_Parser_Config implements Acme_Doc_Model_Parser_Interface
     }
 
     /**
+     * Put information about the possible models in output.
+     *
      * @param Acme_Doc_Model_Reflect_Module_Config $data
      * @param Acme_Doc_Model_Output_Interface      $output
      */

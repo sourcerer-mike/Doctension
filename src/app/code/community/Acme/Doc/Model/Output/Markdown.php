@@ -4,6 +4,11 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
 {
     protected $_depth = 1;
 
+    /**
+     * Set the depth level for the current section.
+     *
+     * @param $depth
+     */
     public function setDepth($depth)
     {
         $this->_depth = $depth;
@@ -21,6 +26,13 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
         $this->_stream = $stream;
     }
 
+    /**
+     * Writes the heading of a section to the output.
+     *
+     * @param $text
+     *
+     * @return $this
+     */
     public function addHeading($text)
     {
         $this->addLine();
@@ -30,6 +42,13 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
         return $this;
     }
 
+    /**
+     * Appends a line to the output.
+     *
+     * @param string $text
+     *
+     * @return $this
+     */
     public function addLine($text = '')
     {
         fwrite($this->_stream, $text . "\n");
@@ -43,6 +62,8 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
     }
 
     /**
+     * Get the current output stream.
+     *
      * @return resource
      */
     public function getStream()
@@ -50,6 +71,11 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
         return $this->_stream;
     }
 
+    /**
+     * Go one section deeper.
+     *
+     * @return Acme_Doc_Model_Output_Markdown|static
+     */
     public function getSub()
     {
         $sub = clone $this;
@@ -59,6 +85,8 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
     }
 
     /**
+     * Set the output stream.
+     *
      * @param resource $stream
      */
     public function setStream($stream)
@@ -66,6 +94,13 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
         $this->_stream = $stream;
     }
 
+    /**
+     * Add a list to the output.
+     *
+     * @param $array
+     *
+     * @return $this
+     */
     public function addItemization($array)
     {
         $this->addLine();

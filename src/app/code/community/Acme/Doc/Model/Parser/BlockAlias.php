@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Fetches information about a block and put them to the output.
+ */
 class Acme_Doc_Model_Parser_BlockAlias extends Acme_Doc_Model_Parser_SimpleClass
 {
 
     /**
+     * Send all information of a block to the output.
+     *
      * @param string                          $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
@@ -16,11 +21,13 @@ class Acme_Doc_Model_Parser_BlockAlias extends Acme_Doc_Model_Parser_SimpleClass
             return;
         }
 
-        $this->mainSection($className, $output);
+        $this->mainSection($data, $output);
         parent::descriptionSection($className, $output);
     }
 
     /**
+     * Main information of a block.
+     *
      * @param                                 $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
