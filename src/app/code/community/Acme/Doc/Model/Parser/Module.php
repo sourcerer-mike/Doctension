@@ -52,4 +52,9 @@ class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
             )
         );
     }
+
+    public function getHelper()
+    {
+        return Mage::helper('acme_doc');
+    }
 }

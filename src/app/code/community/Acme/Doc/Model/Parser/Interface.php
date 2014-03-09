@@ -9,4 +9,6 @@
 interface Acme_Doc_Model_Parser_Interface
 {
     public function parse($data, Acme_Doc_Model_Output_Interface $output);
+
+    public function getHelper();
 }

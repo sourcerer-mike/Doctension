@@ -34,4 +34,20 @@ class Acme_Doc_Model_Module extends Varien_Object
 
         return $this->_config;
     }
+
+    /**
+     * @return RecursiveIteratorIterator
+     */
+    public function getFileList($regExp = null)
+    {
+        $Directory = new RecursiveDirectoryIterator(Mage::getBaseDir() . '/' . $this->getDirectory());
+        $Iterator = new RecursiveIteratorIterator($Directory);
+
+        if (null == $regExp)
+        {
+            return $Iterator;
+        }
+
+        return new RegexIterator($Iterator, $regExp, RecursiveRegexIterator::GET_MATCH);
+    }
 }

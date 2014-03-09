@@ -76,5 +76,44 @@ class Acme_Doc_Model_Module_Config extends Varien_Object
         return '//' . rtrim($xmlPath, '/');
     }
 
+    public function getScopeToClass()
+    {
+        $modelSet = array();
+        $modelXml = $this->getConfigXml()->getXpath('//models');
+
+        $modelBaseDir = $this->getModule()->getModelDirectory();
+        foreach ($modelXml as $node)
+        {
+            /** @var Varien_Simplexml_Element $node */
+            $scope = $node->getParent()->getName();
+
+            foreach ($node as $alias => $baseClassName)
+            {
+                $baseDir = str_replace($this->getModule()->getName() . '_', '', (string) $baseClassName->class);
+                $baseDir = $this->getModule()->getDirectory() . str_replace('_', '/', $baseDir) . '/';
+
+                $modelSet[$scope][$alias] = array();
+                $regExp = '@' . Mage::getBaseDir() . '/' . preg_quote($baseDir, '@') . '.*\.php@i';
+                foreach ($this->getModule()->getFileList($regExp) as $file)
+                {
+                    /** @var SplFileInfo $file */
+                    if ($file instanceof SplFileInfo)
+                    {
+                        $value = $file->getPathname();
+                    }
+                    elseif (is_array($file))
+                    {
+                        $value = current($file);
+                    }
+
+
+                    $modelSet[$scope][$alias][] = str_replace(Mage::getBaseDir() . '/', '', $value);
+                }
+            }
+        }
+
+        return $modelSet;
+    }
+
 
 }

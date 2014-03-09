@@ -10,5 +10,8 @@ interface Acme_Doc_Model_Output_Interface
 
     public function addHeading($text);
 
+    /**
+     * @return static
+     */
     public function getSub();
 }
