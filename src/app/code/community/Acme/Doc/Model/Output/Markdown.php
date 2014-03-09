@@ -68,6 +68,7 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
 
     public function addItemization($array)
     {
+        $this->addLine();
         $array = (array) $array;
         foreach ($array as $key => $item)
         {
@@ -81,6 +82,7 @@ class Acme_Doc_Model_Output_Markdown implements Acme_Doc_Model_Output_Interface
                 $this->addLine(' - ' . $item);
             }
         }
+        $this->addLine();
 
         return $this;
     }

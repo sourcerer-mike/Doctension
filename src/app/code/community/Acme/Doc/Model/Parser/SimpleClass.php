@@ -2,26 +2,9 @@
 
 class Acme_Doc_Model_Parser_SimpleClass implements Acme_Doc_Model_Parser_Interface
 {
-    public function getHelper()
-    {
-        return Mage::helper('acme_doc');
-    }
-
     /**
-     * @param string                          $className
-     * @param Acme_Doc_Model_Output_Interface $output
-     */
-    public function parse($className, Acme_Doc_Model_Output_Interface $output)
-    {
-        if (!class_exists($className, false))
-        {
-            return;
-        }
-
-        $this->descriptionSection($className, $output);
-    }
-
-    /**
+     * Delivers the short description of the class.
+     *
      * @param   string                        $className
      * @param Acme_Doc_Model_Output_Interface $output
      */
@@ -47,5 +30,76 @@ class Acme_Doc_Model_Parser_SimpleClass implements Acme_Doc_Model_Parser_Interfa
         {
             return;
         }
+    }
+
+    public function getHelper()
+    {
+        return Mage::helper('acme_doc');
+    }
+
+    public function methodsSection($className, Acme_Doc_Model_Output_Interface $output)
+    {
+        if (!class_exists($className, false))
+        {
+            return;
+        }
+
+        $reflection = new Zend_Reflection_Class($className);
+        try
+        {
+            $methods = array();
+            foreach ($reflection->getMethods() as $method)
+            {
+                /** @var Zend_Reflection_Method $method */
+                if (!$method->isPublic() ||
+                    $method->isConstructor() ||
+                    $method->isDestructor() ||
+                    $method->isInternal() ||
+                    substr($method->getName(), 0, 2) == '__'
+                )
+                {
+                    continue;
+                }
+
+                try
+                {
+                    $shortDescription = $method->getDocblock()->getShortDescription();
+                } catch (Exception $e)
+                {
+
+                }
+
+                if (!$shortDescription)
+                {
+                    $shortDescription = $this->getHelper()->__('*Unknown capabilities*');
+                }
+
+                $methods[] = sprintf(
+                    '**%s**: %s',
+                    $method->getName(),
+                    $shortDescription
+                );
+            }
+
+            $output->addItemization($methods);
+        } catch (Exception $e)
+        {
+
+        }
+    }
+
+    /**
+     * @param string                          $className
+     * @param Acme_Doc_Model_Output_Interface $output
+     */
+    public function parse($className, Acme_Doc_Model_Output_Interface $output)
+    {
+        if (!class_exists($className, false))
+        {
+            return;
+        }
+
+        $this->descriptionSection($className, $output);
+        $this->methodsSection($className, $output);
     }
 }

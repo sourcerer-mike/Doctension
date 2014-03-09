@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Fetches an instance of an model alias and delivers information of it.
+ */
 class Acme_Doc_Model_Parser_ModelAlias extends Acme_Doc_Model_Parser_SimpleClass
 {
 
     /**
+     * Full parsing of a model alias.
+     *
      * @param string                          $data
      * @param Acme_Doc_Model_Output_Interface $output
      */
@@ -18,6 +23,7 @@ class Acme_Doc_Model_Parser_ModelAlias extends Acme_Doc_Model_Parser_SimpleClass
 
         $this->mainSection($className, $output);
         parent::descriptionSection($className, $output);
+        parent::methodsSection($className, $output);
     }
 
     /**
