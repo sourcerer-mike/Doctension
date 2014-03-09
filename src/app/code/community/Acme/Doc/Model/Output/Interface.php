@@ -9,4 +9,6 @@ interface Acme_Doc_Model_Output_Interface
     public function addLine($text = '');
 
     public function addHeading($text);
+
+    public function getSub();
 }

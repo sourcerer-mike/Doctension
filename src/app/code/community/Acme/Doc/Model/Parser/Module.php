@@ -1,21 +1,30 @@
 <?php
 
-class Acme_Doc_Model_Parser_Module
+class Acme_Doc_Model_Parser_Module implements Acme_Doc_Model_Parser_Interface
 {
-    public function parse(Acme_Doc_Model_Module $module, Acme_Doc_Model_Output_Interface $output)
+    const ALIAS = 'acme_doc/parser_module';
+
+    /**
+     * @param Acme_Doc_Model_Module           $data
+     * @param Acme_Doc_Model_Output_Interface $output
+     */
+    public function parse($data, Acme_Doc_Model_Output_Interface $output)
     {
-        $output->addHeading($module->getName());
+        $output->addHeading($data->getName());
 
         $output->addItemization(
             array(
-                'Active: ' . $module->getActive(),
-                'Version: ' . $module->getVersion(),
-                'Code Pool: ' . $module->getCodePool(),
-                'Directory: ' . $module->getDirectory(),
+                'Active: ' . $data->getActive(),
+                'Version: ' . $data->getVersion(),
+                'Code Pool: ' . $data->getCodePool(),
+                'Directory: ' . $data->getDirectory(),
             )
         );
 
+        // config
 
+        $configParser = Mage::getModel('acme_doc/parser_config');
+        $configParser->parse($data->getConfig(), $output->getSub());
 
         $output->addLine();
         $output->addLine();
